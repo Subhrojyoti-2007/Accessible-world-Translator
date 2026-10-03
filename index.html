@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MostTranslate — Thoughtful AI that elevates your writing</title>
+<!-- Tailwind CSS CDN with forms and container queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fdf7f4',
+              100: '#fbece5',
+              200: '#f8d8ca',
+              500: '#e25c26',
+              600: '#d85a2a',
+              700: '#b8461b',
+            },
+            canvas: {
+              DEFAULT: '#f3efe6',
+              warm: '#f7f5f0',
+              muted: '#ede8dd',
+              border: '#e4dfd3',
+              card: '#ffffff'
+            },
+            ink: {
+              DEFAULT: '#11100f',
+              muted: '#68655e',
+              light: '#8e8b83'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="base-styling">
+    body {
+      background-color: #f3efe6;
+      color: #11100f;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection {
+      background-color: #fbd6c4;
+      color: #7c2d12;
+    }
+  </style>
+<style data-purpose="interactive-tooltips">
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.92; transform: scale(1.02); }
+    }
+    .animate-badge {
+      animation: pulse-subtle 3s infinite ease-in-out;
+    }
+    .globe-mesh {
+      background-image: radial-gradient(#a39f95 1px, transparent 1px);
+      background-size: 10px 10px;
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="min-h-screen bg-canvas text-ink flex flex-col justify-between">
+<!-- BEGIN: MainNavbar -->
+<header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
+<nav aria-label="Main Navigation" class="flex items-center justify-between h-16">
+<!-- Logo Container -->
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="flex items-end gap-1 h-6 w-6">
+<span class="w-1.5 h-6 bg-brand-600 rounded-full transition-transform group-hover:scale-y-110"></span>
+<span class="w-1.5 h-4 bg-brand-600/85 rounded-full transition-transform group-hover:scale-y-125"></span>
+<span class="w-1.5 h-5 bg-brand-600 rounded-full transition-transform group-hover:scale-y-90"></span>
+</div>
+<span class="font-extrabold text-xl tracking-tight text-ink">MostTranslate</span>
+</a>
+<!-- Desktop Navigation Links -->
+<div class="hidden md:flex items-center space-x-9 text-sm font-medium text-ink-muted">
+<a class="hover:text-ink transition-colors" href="#features">Solutions</a>
+<a class="hover:text-ink transition-colors" href="#features">Features</a>
+<a class="hover:text-ink transition-colors" href="#demo">Resources</a>
+<a class="hover:text-ink transition-colors" href="#pricing">Pricing</a>
+</div>
+<!-- Right Action CTAs -->
+<div class="flex items-center gap-3">
+<a class="text-sm font-medium px-4 py-2 text-ink-muted hover:text-ink rounded-full transition-colors border border-transparent hover:border-canvas-border" href="/login">
+          Sign In
+        </a>
+<a class="inline-flex items-center justify-center text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 px-5 py-2.5 rounded-full shadow-sm shadow-brand-600/20 hover:shadow-brand-600/30 transition-all hover:-translate-y-0.5 active:translate-y-0" href="/login?mode=register">
+          Get Started
+        </a>
+</div>
+</nav>
+</header>
+<!-- END: MainNavbar -->
+<!-- BEGIN: HeroSection -->
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+<!-- Left Column: Copy & AI Helper Card -->
+<div class="lg:col-span-6 flex flex-col justify-between space-y-8">
+<!-- Hero Text Block -->
+<div class="space-y-4 max-w-xl">
+<h1 class="text-4xl sm:text-5xl lg:text-[54px] font-extrabold leading-[1.12] tracking-[-0.03em] text-ink">
+            Thoughtful AI that elevates your writing
+          </h1>
+<p class="text-base sm:text-lg text-ink-muted leading-relaxed font-normal pt-1">
+            Create polished, engaging content in seconds while preserving your authentic voice.
+          </p>
+</div>
+<!-- Call to Action & Rating Social Proof -->
+<div class="flex flex-wrap items-center gap-5 pt-1">
+<a class="inline-flex items-center justify-center text-sm sm:text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 px-6 py-3.5 rounded-full shadow-md shadow-brand-600/25 hover:shadow-lg hover:shadow-brand-600/30 transition-all hover:-translate-y-0.5" href="/login?mode=register">
+            Start Free Today
+          </a>
+
+</div>
+
+</div>
+<!-- Right Column: Global Language Support Card -->
+<div class="lg:col-span-6 flex flex-col">
+<div class="bg-white rounded-3xl p-6 sm:p-8 border border-canvas-border/80 shadow-sm flex flex-col justify-between h-full relative overflow-hidden" data-purpose="global-support-card">
+<!-- Card Header -->
+<div class="relative z-10">
+<h2 class="text-xl sm:text-2xl font-bold tracking-tight text-ink">Global Language Support</h2>
+<p class="text-xs sm:text-sm text-ink-muted mt-1 max-w-sm">Works seamlessly in 40+ languages with full multilingual features.</p>
+</div>
+<!-- Language Selector Badges (Pills) -->
+<div class="relative z-10 grid grid-cols-2 gap-3 mt-6">
+<!-- English Pill -->
+<div class="bg-white/95 backdrop-blur-sm border border-canvas-border/90 rounded-2xl p-3.5 shadow-sm flex flex-col items-center justify-center transition-transform hover:-translate-y-0.5">
+<span class="text-[11px] font-medium text-ink-light mb-1">Hello!</span>
+<div class="flex items-center gap-2">
+<!-- UK / Cross Flag Pill -->
+<span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center shadow-xs border border-gray-200">
+<svg class="w-full h-full object-cover" viewbox="0 0 60 30">
+<clippath id="s"><path d="M0,0 v30 h60 v-30 z"></path></clippath>
+<path d="M0,0 v30 h60 v-30 z" fill="#012169"></path>
+<path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"></path>
+<path clip-path="url(#s)" d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"></path>
+<path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"></path>
+<path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"></path>
+</svg>
+</span>
+<span class="font-bold text-sm text-ink">English</span>
+</div>
+</div>
+<!-- Spanish Pill -->
+<div class="bg-white/95 backdrop-blur-sm border border-canvas-border/90 rounded-2xl p-3.5 shadow-sm flex flex-col items-center justify-center transition-transform hover:-translate-y-0.5">
+<span class="text-[11px] font-medium text-ink-light mb-1">¡Hola!</span>
+<div class="flex items-center gap-2">
+<!-- Spain Flag Pill -->
+<span class="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center border border-gray-200">
+<svg class="w-full h-full object-cover" viewbox="0 0 750 500">
+<rect fill="#c60b1e" height="500" width="750"></rect>
+<rect fill="#ffc400" height="250" width="750" y="125"></rect>
+</svg>
+</span>
+<span class="font-bold text-sm text-ink">Spanish</span>
+</div>
+</div>
+</div>
+<!-- Radar/Globe Connectivity Vector Canvas Area -->
+<div class="relative w-full h-[320px] sm:h-[360px] mt-6 flex items-end justify-center">
+<!-- Radial dotted coordinates globe background -->
+<div class="absolute inset-x-0 bottom-0 top-6 globe-mesh opacity-45 rounded-b-2xl pointer-events-none"></div>
+<!-- Custom Connectivity SVG Illustration -->
+<svg class="w-full h-full relative z-10" fill="none" viewbox="0 0 460 320" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Gradients for subtle depth -->
+<lineargradient gradientunits="userSpaceOnUse" id="globeFade" x1="230" x2="230" y1="120" y2="320">
+<stop stop-color="#dedad0" stop-opacity="0.2"></stop>
+<stop stop-color="#dedad0" stop-opacity="0.8"></stop>
+</lineargradient>
+<lineargradient gradientunits="userSpaceOnUse" id="arcGrad" x1="120" x2="340" y1="180" y2="280">
+<stop stop-color="#11100f" stop-opacity="0.8"></stop>
+<stop stop-color="#9c9689" stop-opacity="0.2"></stop>
+</lineargradient>
+</defs>
+<!-- Subtle globe latitude lines -->
+<ellipse cx="230" cy="270" rx="190" ry="110" stroke="#d5d0c3" stroke-dasharray="3 3" stroke-width="1.2"></ellipse>
+<ellipse cx="230" cy="250" rx="140" ry="80" stroke="#d5d0c3" stroke-dasharray="2 3" stroke-width="1"></ellipse>
+<path d="M 40 270 Q 230 150 420 270" fill="none" stroke="#cfc9bc" stroke-dasharray="4 4" stroke-width="1.5"></path>
+<!-- Node 1: Denmark Flag Pin (Left) -->
+<g transform="translate(60, 180)">
+<line stroke="#68655e" stroke-width="1.5" x1="0" x2="0" y1="20" y2="90"></line>
+<!-- Denmark Circular Pin -->
+<circle class="shadow" cx="0" cy="14" fill="#c60c30" r="14" stroke="#ffffff" stroke-width="2"></circle>
+<rect fill="#ffffff" height="4" width="28" x="-14" y="12"></rect>
+<rect fill="#ffffff" height="28" width="4" x="-4" y="0"></rect>
+</g>
+<!-- Node 2: Czech Republic Flag Pin (Center Left - High) -->
+<g transform="translate(180, 100)">
+<line stroke="#403e39" stroke-width="1.8" x1="0" x2="0" y1="22" y2="175"></line>
+<circle cx="0" cy="14" fill="#ffffff" r="15" stroke="#e0ded7" stroke-width="2"></circle>
+<!-- Czech split circle -->
+<clippath id="czechClip">
+<circle cx="0" cy="14" r="14"></circle>
+</clippath>
+<g clip-path="url(#czechClip)">
+<rect fill="#ffffff" height="14" width="28" x="-14" y="0"></rect>
+<rect fill="#d7141a" height="14" width="28" x="-14" y="14"></rect>
+<polygon fill="#11457e" points="-14,0 0,14 -14,28"></polygon>
+</g>
+</g>
+<!-- Node 3: Indonesia / Monaco Pin (Center) -->
+<g transform="translate(250, 150)">
+<line stroke="#403e39" stroke-width="1.6" x1="0" x2="0" y1="16" y2="125"></line>
+<circle cx="0" cy="10" fill="#ffffff" r="12" stroke="#ffffff" stroke-width="1.5"></circle>
+<clippath id="indonesiaClip">
+<circle cx="0" cy="10" r="11"></circle>
+</clippath>
+<g clip-path="url(#indonesiaClip)">
+<rect fill="#ce1126" height="11" width="24" x="-12" y="-1"></rect>
+<rect fill="#ffffff" height="11" width="24" x="-12" y="10"></rect>
+</g>
+</g>
+<!-- Node 4: Belgium / Germany Pin (Right) -->
+<g transform="translate(370, 185)">
+<line stroke="#403e39" stroke-width="1.6" x1="0" x2="0" y1="18" y2="85"></line>
+<circle cx="0" cy="12" fill="#ffffff" r="13" stroke="#ffffff" stroke-width="2"></circle>
+<clippath id="belgiumClip">
+<circle cx="0" cy="12" r="12"></circle>
+</clippath>
+<g clip-path="url(#belgiumClip)">
+<rect fill="#000000" height="24" width="8" x="-12" y="0"></rect>
+<rect fill="#ffd90c" height="24" width="8" x="-4" y="0"></rect>
+<rect fill="#ed2939" height="24" width="8" x="4" y="0"></rect>
+</g>
+</g>
+<!-- Curving Interactive Flight / Arc Trajectories -->
+<path d="M 60 270 Q 120 220 180 275" fill="none" stroke="#11100f" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M 180 275 Q 215 210 250 275" fill="none" stroke="#11100f" stroke-linecap="round" stroke-width="2"></path>
+<path d="M 250 275 Q 310 215 370 270" fill="none" stroke="#11100f" stroke-linecap="round" stroke-width="2"></path>
+<!-- Anchor Dots -->
+<circle cx="180" cy="275" fill="#11100f" r="3.5"></circle>
+<circle cx="250" cy="275" fill="#11100f" r="3.5"></circle>
+<circle cx="370" cy="270" fill="#11100f" r="3"></circle>
+</svg>
+</div>
+<!-- Bottom Footer Metrics inside Card -->
+<div class="relative z-10 pt-2 border-t border-canvas-border/50 flex items-center justify-between text-xs text-ink-muted">
+<span>✨ Dialect &amp; idiom adaptation</span>
+<span class="font-medium text-ink">99.4% context accuracy</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- END: HeroSection -->
+<!-- BEGIN: InteractiveLiveDemo -->
+<section class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" data-purpose="interactive-playground" id="playground">
+<div class="bg-white rounded-3xl p-6 sm:p-10 border border-canvas-border shadow-sm">
+<div class="text-center max-w-2xl mx-auto mb-10">
+<span class="text-xs uppercase font-extrabold tracking-wider text-brand-600">Experience Live</span>
+<h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1 text-ink">Try MostTranslate in real-time</h3>
+<p class="text-sm text-ink-muted mt-2">Type or modify any sentence to experience nuanced, dialect-aware AI polish.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Input Text Panel -->
+<div class="flex flex-col bg-canvas-warm/60 rounded-2xl p-4 sm:p-5 border border-canvas-border">
+<div class="flex items-center justify-between pb-3 border-b border-canvas-border/80 text-xs font-semibold text-ink-muted">
+<span>INPUT (ORIGINAL DRAFT)</span>
+<span class="text-brand-600">English (Casual)</span>
+</div>
+<textarea class="w-full mt-3 bg-transparent border-0 resize-none text-ink font-normal text-sm sm:text-base focus:ring-0 focus:outline-none placeholder-ink-light" id="demoInput" placeholder="Type or paste your text here..." rows="5">Our team has launched the product yesterday and we are seeing really great numbers with international users.</textarea>
+<div class="pt-3 mt-auto flex items-center justify-between border-t border-canvas-border/60">
+<span class="text-xs text-ink-light" id="charCounter">107 chars</span>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-ink text-white text-xs font-semibold hover:bg-brand-600 transition" id="rephraseBtn" type="button">
+<span>Refine with AI</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</button>
+</div>
+</div>
+<!-- Output Transformed Panel -->
+<div class="flex flex-col bg-canvas/30 rounded-2xl p-4 sm:p-5 border border-canvas-border relative">
+<div class="flex items-center justify-between pb-3 border-b border-canvas-border/80 text-xs font-semibold text-ink-muted">
+<span>AI ENHANCED OUTPUT</span>
+<div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-full border border-canvas-border text-[11px] text-brand-600 font-bold">
+<span>✦ Polished &amp; Fluent</span>
+</div>
+</div>
+<div class="w-full mt-3 text-ink font-normal text-sm sm:text-base leading-relaxed" id="demoOutput">
+            Yesterday, our team officially unveiled the product, achieving exceptional engagement across international audiences.
+          </div>
+<div class="pt-3 mt-auto flex items-center justify-between border-t border-canvas-border/60">
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 text-xs font-medium rounded-lg bg-white border border-brand-500 text-brand-600" id="toneProfessional" type="button">
+                Executive
+              </button>
+<button class="px-2.5 py-1 text-xs font-medium rounded-lg bg-white/70 border border-canvas-border text-ink-muted hover:text-ink" id="toneSpanish" type="button">
+                Translate ES
+              </button>
+</div>
+<button class="text-xs text-ink-muted hover:text-ink flex items-center gap-1 font-medium transition" id="copyOutputBtn" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><rect height="14" rx="2" ry="2" width="14" x="8" y="8"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+<span>Copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: InteractiveLiveDemo -->
+<!-- BEGIN: FeatureGrid -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14" data-purpose="features" id="features">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white rounded-3xl p-6 sm:p-7 border border-canvas-border">
+<div class="w-10 h-10 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg mb-4">
+          01
+        </div>
+<h4 class="text-lg font-bold text-ink">Tone Calibration</h4>
+<p class="text-sm text-ink-muted mt-2 leading-relaxed">
+          Switch seamlessly between conversational, boardroom-ready, persuasive, or strictly academic registers.
+        </p>
+</div>
+<div class="bg-white rounded-3xl p-6 sm:p-7 border border-canvas-border">
+<div class="w-10 h-10 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg mb-4">
+          02
+        </div>
+<h4 class="text-lg font-bold text-ink">Cultural Localization</h4>
+<p class="text-sm text-ink-muted mt-2 leading-relaxed">
+          Never translate word-for-word again. MostTranslate adjusts idioms, humor, and cultural context instinctively.
+        </p>
+</div>
+<div class="bg-white rounded-3xl p-6 sm:p-7 border border-canvas-border">
+<div class="w-10 h-10 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-lg mb-4">
+          03
+        </div>
+<h4 class="text-lg font-bold text-ink">Enterprise Privacy</h4>
+<p class="text-sm text-ink-muted mt-2 leading-relaxed">
+          Zero training data retention. Your corporate internal communication and customer copy remain completely confidential.
+        </p>
+</div>
+</div>
+</section>
+<!-- END: FeatureGrid -->
+
+<!-- BEGIN: MainFooter -->
+<footer class="w-full border-t border-canvas-border bg-canvas-warm/70 py-10 mt-12" data-purpose="page-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted">
+<div class="flex items-center gap-2">
+<div class="flex items-end gap-0.5 h-4 w-4">
+<span class="w-1 h-4 bg-brand-600 rounded-full"></span>
+<span class="w-1 h-2.5 bg-brand-600 rounded-full"></span>
+<span class="w-1 h-3 bg-brand-600 rounded-full"></span>
+</div>
+<span class="font-bold text-ink">MostTranslate</span>
+<span>© 2025 Amplysphere OÜ. All rights reserved.</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="hover:text-ink transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-ink transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-ink transition-colors" href="#">Security</a>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: InteractiveScripts -->
+
+<script data-purpose="interactive-demo-controls">
+    const demoInput = document.getElementById('demoInput');
+    const demoOutput = document.getElementById('demoOutput');
+    const charCounter = document.getElementById('charCounter');
+    const rephraseBtn = document.getElementById('rephraseBtn');
+    const toneProfessional = document.getElementById('toneProfessional');
+    const toneSpanish = document.getElementById('toneSpanish');
+    const copyOutputBtn = document.getElementById('copyOutputBtn');
+
+    if (demoInput && charCounter) {
+      demoInput.addEventListener('input', () => {
+        charCounter.textContent = `${demoInput.value.length} chars`;
+      });
+    }
+
+    if (rephraseBtn && demoInput && demoOutput) {
+      rephraseBtn.addEventListener('click', () => {
+        demoOutput.textContent = 'Analyzing syntax & nuances...';
+        setTimeout(() => {
+          demoOutput.textContent = `Yesterday, our team officially unveiled the product, achieving exceptional engagement across international audiences.`;
+        }, 400);
+      });
+    }
+
+    if (toneSpanish && demoOutput) {
+      toneSpanish.addEventListener('click', () => {
+        toneSpanish.classList.add('border-brand-500', 'text-brand-600');
+        toneProfessional.classList.remove('border-brand-500', 'text-brand-600');
+        toneProfessional.classList.add('text-ink-muted');
+        demoOutput.textContent = 'Ayer, nuestro equipo presentó oficialmente el producto, logrando un compromiso excepcional entre audiencias internacionales.';
+      });
+    }
+
+    if (toneProfessional && demoOutput) {
+      toneProfessional.addEventListener('click', () => {
+        toneProfessional.classList.add('border-brand-500', 'text-brand-600');
+        toneSpanish.classList.remove('border-brand-500', 'text-brand-600');
+        toneSpanish.classList.add('text-ink-muted');
+        demoOutput.textContent = 'Yesterday, our team officially unveiled the product, achieving exceptional engagement across international audiences.';
+      });
+    }
+
+    if (copyOutputBtn && demoOutput) {
+      copyOutputBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(demoOutput.textContent.trim()).then(() => {
+          const original = copyOutputBtn.innerHTML;
+          copyOutputBtn.innerHTML = '<span>Copied! ✓</span>';
+          setTimeout(() => {
+            copyOutputBtn.innerHTML = original;
+          }, 1800);
+        });
+      });
+    }
+  </script>
+<!-- END: InteractiveScripts -->
+</body></html>

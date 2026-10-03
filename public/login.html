@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Accessible World Translator</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { 50: '#fdf7f4', 600: '#d85a2a', 700: '#b8461b' },
+                        canvas: { DEFAULT: '#f3efe6', border: '#e4dfd3' },
+                        ink: { DEFAULT: '#11100f', muted: '#68655e' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f3efe6; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-3xl p-8 shadow-xl border border-canvas-border">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-ink" id="formTitle">Welcome Back</h2>
+            <p class="text-sm text-ink-muted mt-1" id="formSubtitle">Sign in to your account</p>
+        </div>
+
+        <div id="errorMsg" class="hidden mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm font-medium text-center"></div>
+
+        <form id="authForm" class="space-y-4">
+            <div id="nameField" class="hidden">
+                <label class="block text-sm font-medium text-ink mb-1">Full Name</label>
+                <input type="text" id="name" class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-600 focus:ring-brand-600 sm:text-sm px-4 py-3" placeholder="John Doe">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-ink mb-1">Email Address</label>
+                <input type="email" id="email" name="email" autocomplete="username" required class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-600 focus:ring-brand-600 sm:text-sm px-4 py-3" placeholder="you@example.com">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-ink mb-1">Password</label>
+                <input type="password" id="password" name="password" autocomplete="current-password" required class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-600 focus:ring-brand-600 sm:text-sm px-4 py-3" placeholder="••••••••">
+            </div>
+            <button type="submit" id="submitBtn" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-600 transition-all active:scale-[0.98] mt-6">
+                Sign In
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-sm text-ink-muted">
+                <span id="toggleText">Don't have an account?</span> 
+                <button id="toggleBtn" class="font-bold text-brand-600 hover:text-brand-700 underline underline-offset-2">Sign up</button>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let isLogin = true;
+        const formTitle = document.getElementById('formTitle');
+        const formSubtitle = document.getElementById('formSubtitle');
+        const nameField = document.getElementById('nameField');
+        const nameInput = document.getElementById('name');
+        const submitBtn = document.getElementById('submitBtn');
+        const toggleText = document.getElementById('toggleText');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const authForm = document.getElementById('authForm');
+        const errorMsg = document.getElementById('errorMsg');
+
+        function toggleMode() {
+            isLogin = !isLogin;
+            errorMsg.classList.add('hidden');
+            if (isLogin) {
+                formTitle.textContent = 'Welcome Back';
+                formSubtitle.textContent = 'Sign in to your account';
+                nameField.classList.add('hidden');
+                nameInput.required = false;
+                submitBtn.textContent = 'Sign In';
+                toggleText.textContent = "Don't have an account?";
+                toggleBtn.textContent = 'Sign up';
+            } else {
+                formTitle.textContent = 'Create Account';
+                formSubtitle.textContent = 'Get started with Accessible World Translator';
+                nameField.classList.remove('hidden');
+                nameInput.required = true;
+                submitBtn.textContent = 'Sign Up';
+                toggleText.textContent = 'Already have an account?';
+                toggleBtn.textContent = 'Sign in';
+            }
+        }
+
+        toggleBtn.addEventListener('click', toggleMode);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'register') {
+            toggleMode();
+        }
+
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorMsg.classList.add('hidden');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Please wait...';
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const payload = { email, password };
+            
+            if (!isLogin) {
+                payload.name = document.getElementById('name').value;
+            }
+
+            const endpoint = isLogin ? '/api/login' : '/api/register';
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Authentication failed');
+                }
+
+                // Store token and user data
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+
+                // Redirect to dashboard
+                window.location.href = '/dashboard';
+            } catch (err) {
+                errorMsg.textContent = err.message;
+                errorMsg.classList.remove('hidden');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = isLogin ? 'Sign In' : 'Sign Up';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Accessible World Translator</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { 50: '#fdf7f4', 100: '#fbece5', 200: '#f8d8ca', 500: '#e25c26', 600: '#d85a2a', 700: '#b8461b' },
+                        canvas: { DEFAULT: '#f3efe6', warm: '#f7f5f0', border: '#e4dfd3', card: '#ffffff' },
+                        ink: { DEFAULT: '#11100f', muted: '#68655e', light: '#8e8b83' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f3efe6; color: #11100f; }
+    </style>
+</head>
+<body class="min-h-screen bg-canvas flex flex-col">
+    <!-- Navbar -->
+    <header class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2">
+        <nav class="flex items-center justify-between h-16 bg-white/60 backdrop-blur rounded-2xl px-6 border border-canvas-border shadow-sm">
+            <a class="flex items-center gap-2.5 group" href="/">
+                <div class="flex items-end gap-1 h-6 w-6">
+                    <span class="w-1.5 h-6 bg-brand-600 rounded-full"></span>
+                    <span class="w-1.5 h-4 bg-brand-600/85 rounded-full"></span>
+                    <span class="w-1.5 h-5 bg-brand-600 rounded-full"></span>
+                </div>
+                <span class="font-extrabold text-xl tracking-tight text-ink">MostTranslate</span>
+            </a>
+            <div class="flex items-center gap-4">
+                <a class="text-sm font-medium text-ink-muted hover:text-ink transition-colors" href="/dashboard">Dashboard</a>
+                <a class="inline-flex items-center justify-center text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 px-5 py-2 rounded-full shadow-sm shadow-brand-600/20 transition-all hover:-translate-y-0.5" href="/app">
+                    Launch App
+                </a>
+                <span class="text-sm font-medium text-ink" id="userNameDisplay">Loading...</span>
+                <button id="logoutBtn" class="text-sm font-medium px-4 py-2 text-ink-muted hover:text-red-600 hover:bg-red-50 rounded-full transition-colors border border-transparent hover:border-red-200">
+                    Sign Out
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <div class="mb-8">
+            <h1 class="text-3xl font-extrabold tracking-tight text-ink">Account Settings</h1>
+            <p class="text-sm text-ink-muted mt-1">Manage your professional profile and application preferences.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden border border-canvas-border shadow-sm mb-8">
+            <!-- Profile Header -->
+            <div class="relative h-32 bg-gradient-to-r from-brand-100 to-canvas-warm border-b border-canvas-border">
+                <div class="absolute -bottom-10 left-8">
+                    <div class="w-24 h-24 rounded-2xl bg-white border-4 border-white shadow-md flex items-center justify-center text-3xl font-bold text-brand-600 bg-canvas-warm">
+                        <span id="userInitials">US</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-14 px-8 pb-8">
+                <h2 class="text-xl font-bold text-ink" id="profileName">Loading Name...</h2>
+                <p class="text-sm text-ink-muted" id="profileEmail">loading@email.com</p>
+                <div class="mt-4 flex items-center gap-2 text-xs font-medium text-ink-light bg-canvas-warm inline-flex px-3 py-1 rounded-full border border-canvas-border">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Verified Professional Account
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Left Sidebar Navigation (Visual) -->
+            <div class="md:col-span-1">
+                <nav class="space-y-1">
+                    <a href="#" class="bg-brand-50 text-brand-700 hover:bg-brand-50 hover:text-brand-700 group flex items-center px-4 py-3 text-sm font-medium rounded-2xl transition-colors">
+                        <svg class="text-brand-600 mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        Personal Info
+                    </a>
+                    <a href="#" class="text-ink-muted hover:bg-canvas-warm hover:text-ink group flex items-center px-4 py-3 text-sm font-medium rounded-2xl transition-colors">
+                        <svg class="text-ink-light mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                        Security
+                    </a>
+                    <a href="#" class="text-ink-muted hover:bg-canvas-warm hover:text-ink group flex items-center px-4 py-3 text-sm font-medium rounded-2xl transition-colors">
+                        <svg class="text-ink-light mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        Preferences
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="md:col-span-2 space-y-6">
+                <!-- Personal Information -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-canvas-border shadow-sm">
+                    <h3 class="text-lg font-bold text-ink mb-5">Personal Information</h3>
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-ink mb-1">Full Name</label>
+                                <input type="text" id="inputName" class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-600 focus:ring-brand-600 sm:text-sm px-4 py-3 bg-canvas-warm/50" disabled>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-ink mb-1">Email Address</label>
+                                <input type="email" id="inputEmail" class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-600 focus:ring-brand-600 sm:text-sm px-4 py-3 bg-canvas-warm/50" disabled>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-ink mb-1">Professional Title / Role</label>
+                            <input type="text" class="w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-600 focus:ring-brand-600 sm:text-sm px-4 py-3" placeholder="e.g. Accessibility Consultant" value="Accessibility Consultant">
+                        </div>
+                        <div class="pt-4 flex justify-end">
+                            <button type="button" class="inline-flex items-center justify-center py-2.5 px-6 rounded-full bg-ink text-white text-sm font-bold hover:bg-brand-600 transition-colors shadow-sm">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Language Preferences -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-canvas-border shadow-sm">
+                    <h3 class="text-lg font-bold text-ink mb-5">Language & Audio Preferences</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between py-3 border-b border-canvas-border/50">
+                            <div>
+                                <p class="text-sm font-semibold text-ink">Default Output Language</p>
+                                <p class="text-xs text-ink-muted">Set your primary target language for live translation.</p>
+                            </div>
+                            <select class="rounded-xl border-gray-300 shadow-sm focus:border-brand-600 focus:ring-brand-600 sm:text-sm">
+                                <option>English</option>
+                                <option>Spanish</option>
+                                <option>French</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center justify-between py-3 border-b border-canvas-border/50">
+                            <div>
+                                <p class="text-sm font-semibold text-ink">High-Contrast UI</p>
+                                <p class="text-xs text-ink-muted">Enable visual accessibility enhancements across the app.</p>
+                            </div>
+                            <!-- Toggle switch -->
+                            <button type="button" class="bg-brand-600 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2">
+                                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between py-3">
+                            <div>
+                                <p class="text-sm font-semibold text-ink">Bidi-Audio Auto-Start</p>
+                                <p class="text-xs text-ink-muted">Automatically open the microphone when launching the app.</p>
+                            </div>
+                            <!-- Toggle switch -->
+                            <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2">
+                                <span class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Check Authentication
+        const token = localStorage.getItem('token');
+        const userStr = localStorage.getItem('user');
+        
+        if (!token || !userStr) {
+            window.location.href = '/login';
+        } else {
+            const user = JSON.parse(userStr);
+            
+            // Populate navbar
+            document.getElementById('userNameDisplay').textContent = user.name;
+            
+            // Populate profile header
+            document.getElementById('profileName').textContent = user.name;
+            document.getElementById('profileEmail').textContent = user.email;
+            
+            // Populate forms
+            document.getElementById('inputName').value = user.name;
+            document.getElementById('inputEmail').value = user.email;
+
+            // Generate Initials
+            const names = user.name.split(' ');
+            let initials = names[0].charAt(0);
+            if (names.length > 1) {
+                initials += names[names.length - 1].charAt(0);
+            }
+            document.getElementById('userInitials').textContent = initials.toUpperCase();
+        }
+
+        // Logout logic
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login';
+        });
+    </script>
+</body>
+</html>
