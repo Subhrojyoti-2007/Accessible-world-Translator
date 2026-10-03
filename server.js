@@ -21,6 +21,10 @@ app.get('/app', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'public', 'app.html'));
 });
 
+app.get('/app-offline', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'public', 'app-offline.html'));
+});
+
 // Since we have the index.html from MostTranslate at the root, we'll serve it
 app.get('/', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'index.html'));
