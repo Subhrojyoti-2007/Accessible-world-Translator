@@ -44,12 +44,17 @@ downloadModelBtn.addEventListener('click', async () => {
         log('Initializing WebGPU LLM Runtime...', 'text-yellow-400');
         
         // The Gemma model must be downloaded manually from Kaggle due to licensing
-        const modelUrl = '/models/gemma-2b-it-gpu-int4.bin';
+        let modelUrl = '/models/gemma-2b-it-gpu-int4.bin';
         
         // Quick check if the file actually exists locally
-        const check = await fetch(modelUrl, { method: 'HEAD' });
+        let check = await fetch(modelUrl, { method: 'HEAD' });
         if (!check.ok) {
-            throw new Error(`Model file not found at ${modelUrl}. You must download it from Kaggle and place it in the public/models directory.`);
+            // Check fallback in root public directory in case they didn't make a models folder
+            modelUrl = '/gemma-2b-it-gpu-int4.bin';
+            check = await fetch(modelUrl, { method: 'HEAD' });
+            if (!check.ok) {
+                throw new Error(`Model file not found. You must download the TFLite variation from Kaggle and place it in the public/models directory.`);
+            }
         }
 
         log('Downloading 2GB weights from local server cache...', 'text-yellow-400');
